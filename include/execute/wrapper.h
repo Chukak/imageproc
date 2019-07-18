@@ -4,11 +4,6 @@
 #include "execute/internal/baseprocess.h"
 #include <opencv2/core/mat.hpp>
 
-inline auto make_wrapper() noexcept
-{
-
-}
-
 class Wrapper
 {
 public:
