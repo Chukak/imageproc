@@ -24,6 +24,10 @@ constexpr const char * HELP_MSG
  "    --blur [--type (blur type)] [--point-anchor (x) (y)]                              Smoothing image. \n"
  "                                                                                      Blur types: [gaussian, median, bilaterial].\n"
  "                                                                                      Anchor point only for original blur (without type).\n"
+ "    --threshold [--type (threshold type)] [--gray] [--value (0-255)]                  Threshold image. \n"
+ "                                                                                      Threshold type: [binary, binary-inv, truncated, to-zero, to-zero-inv].\n"
+ "                                                                                      Threshold value is number in range 0-255. \n"
+ "                                                                                      Convert image to graysale before processing: --gray. \n"
  "    --save /path/to/image                                                             Save image to file.\n"
  "\n");
 // todo
@@ -33,7 +37,14 @@ namespace  blur
 {
 constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point");
 constexpr const char * BLUR_TYPE_MSG("Incorrect blur type. Avaliable types: [gaussian, median, bilatetial]");
-constexpr const char * SET_BLUR_TYPE_MSG("Please add a blut type.");
+constexpr const char * SET_BLUR_TYPE_MSG("Please add a blur type.");
+}
+
+namespace  threshold
+{
+constexpr const char * THRESHOLD_TYPE_MSG("Incorrect threshold type. Available types: [binary, binary-inv, truncated, to-zero, to-zero-inv]");
+constexpr const char * THRESHOLD_VALUE_MSG("Threshold value must be in range 0-255.");
+constexpr const char * SET_THRESHOLD_TYPE_MSG("Please add a threshold type.");
 }
 
 }
