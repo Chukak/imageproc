@@ -1,6 +1,7 @@
 #include "execute/process.h"
 #include "base/blur.h"
 #include "base/show.h"
+#include "base/threshold.h"
 
 
 template<class C>
@@ -25,3 +26,4 @@ void Process<C>::exec() noexcept
 
 template class Process<Blur>;
 template class Process<Show>;
+template class Process<Threshold>;

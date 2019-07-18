@@ -13,6 +13,7 @@ public:
     {
         Blur_t,
         Show_t,
+        Threshold_t,
         Invalid
     };
 public:
