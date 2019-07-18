@@ -2,7 +2,6 @@
 #include "settings/cmdoptions.h"
 #include <map>
 #include <string>
-#include <algorithm>
 #include <opencv2/imgproc.hpp>
 
 using namespace std;
@@ -10,9 +9,9 @@ using namespace command_line;
 
 // check cmdoptions;
 static std::map<string, BLUR_TYPE> OPTIONS_VALUE = {
-    {string{options::blur_opt::BLUR_TYPE[0]}, BLUR_GAUSSIAN},
-    {string{options::blur_opt::BLUR_TYPE[1]}, BLUR_MEDIAN},
-    {string{options::blur_opt::BLUR_TYPE[2]}, BLUR_BILATERAL},
+    {string{options::blur_opt::BLUR_TYPE_VALUES[0]}, BLUR_GAUSSIAN},
+    {string{options::blur_opt::BLUR_TYPE_VALUES[1]}, BLUR_MEDIAN},
+    {string{options::blur_opt::BLUR_TYPE_VALUES[2]}, BLUR_BILATERAL},
 };
 
 // todo
