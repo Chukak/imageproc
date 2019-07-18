@@ -1,18 +1,13 @@
 #ifndef SHOW_H
 #define SHOW_H
 
-#include <opencv2/core/mat.hpp>
+#include "interface/operation.h"
 
-class Show
+class Show : public Operation
 {
 public:
     explicit Show(const char * path);
-    inline bool good() const noexcept { return ok; }
-    void run() noexcept {}
-public:
-    cv::Mat result;
-private:
-    bool ok{true};
+    void run() final {}
 };
 
 #endif // SHOW_H
