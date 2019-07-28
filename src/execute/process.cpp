@@ -2,6 +2,7 @@
 #include "base/blur.h"
 #include "base/show.h"
 #include "base/threshold.h"
+#include "base/linearfilter.h"
 
 
 template<class C>
@@ -27,3 +28,4 @@ void Process<C>::exec() noexcept
 template class Process<Blur>;
 template class Process<Show>;
 template class Process<Threshold>;
+template class Process<LinearFilter>;

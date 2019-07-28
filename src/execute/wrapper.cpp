@@ -3,6 +3,7 @@
 #include "base/blur.h"
 #include "base/show.h"
 #include "base/threshold.h"
+#include "base/linearfilter.h"
 
 Wrapper::Wrapper(BaseProcess *p) :
     process(p)
@@ -33,6 +34,10 @@ bool Wrapper::run_exec() noexcept
     }
     case BaseProcess::Threshold_t: {
         auto p = dynamic_cast<Process<Threshold> *>(process);
+        return run_as_default(p);
+    }
+    case BaseProcess::LinearFilter_t: {
+        auto p = dynamic_cast<Process<LinearFilter> *>(process);
         return run_as_default(p);
     }
     default:

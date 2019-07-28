@@ -14,6 +14,7 @@ public:
         Blur_t,
         Show_t,
         Threshold_t,
+        LinearFilter_t,
         Invalid
     };
 public:
