@@ -9,6 +9,7 @@ namespace options
 constexpr const char * HELP_OPTION("--help");
 constexpr const char * BLUR_OPTION("--blur");
 constexpr const char * THRESHOLD_OPTION("--threshold");
+constexpr const char * LINEAR_FILTER_OPTION("--linear-filter");
 constexpr const char * SAVE_OPTION("--save");
 
 namespace blur_opt
@@ -30,6 +31,13 @@ constexpr const char * THRESHOLD_TYPE_VALUES[] = {"binary",
                                                   "truncated",
                                                   "to-zero",
                                                   "to-zero-inv"};
+}
+
+namespace linear_filter_opt
+{
+constexpr const char * LINEAR_FILTER_KERNEL_SIZE("--kernel-size");
+constexpr const char * LINEAR_FILTER_ANCHOR("--anchor");
+constexpr const char * LINEAR_FILTER_DELTA("--delta");
 }
 
 }
