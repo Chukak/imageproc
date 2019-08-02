@@ -20,13 +20,13 @@ Arguments::Arguments(int argc, char** argv, Wrapper *w)
                 show_help();
                 finish = true;
             } else if (!strcmp(argv[c], BLUR_OPTION)) {
-                run_parser_by_default<ParserBlur_t>(finish, argc, argv, w);
+                save_path = run_parser_by_default<ParserBlur_t>(finish, argc, argv, w);
             } else if (!strcmp(argv[c], THRESHOLD_OPTION)) {
-                run_parser_by_default<ParserThreshold_t>(finish, argc, argv, w);
+                save_path = run_parser_by_default<ParserThreshold_t>(finish, argc, argv, w);
             } else if (!strcmp(argv[c], LINEAR_FILTER_OPTION)) {
-                run_parser_by_default<ParserLinearFilter_t>(finish, argc, argv, w);
+                save_path = run_parser_by_default<ParserLinearFilter_t>(finish, argc, argv, w);
             } else {
-              run_parser_by_default<ParserShow_t>(finish, argc, argv, w);
+                save_path = run_parser_by_default<ParserShow_t>(finish, argc, argv, w);
             }
             break;
         }

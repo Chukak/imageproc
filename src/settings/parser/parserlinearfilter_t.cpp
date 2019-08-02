@@ -45,6 +45,7 @@ void ParserLinearFilter_t::parse() noexcept
         }
         break;
     }
+    check_save_path();
     cv::Mat frame;
     bool ok;
     set_image(frame, ok);

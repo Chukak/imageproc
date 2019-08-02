@@ -18,7 +18,7 @@ namespace msg
 
 // todo
 constexpr const char * HELP_MSG
-("Usage: " PROGRAM_NAME " [method] [option (value)]... /path/to/image \n"
+("Usage: " PROGRAM_NAME " [method] [option (value)]... [--save /path/to/saved/image] /path/to/image \n"
  "Methods: \n"
  "    --help                                                                                    Show this information.\n"
  "    --blur [--type (blur type)] [--point-anchor (x) (y)]                                      Smoothing image. \n"
@@ -36,6 +36,7 @@ constexpr const char * HELP_MSG
  "\n");
 // todo
 constexpr const char * IMG_NOT_FOUND_MSG("Image '' not found!");
+constexpr const char* SET_SAVE_PATH_MSG("Please set path to saved image!");
 
 namespace  blur
 {

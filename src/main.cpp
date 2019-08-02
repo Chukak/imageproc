@@ -25,9 +25,12 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    // todo
-    cv::imshow("output", w.get_result());
-    cv::waitKey();
+    if (args.has_save_path()) {
+        cv::imwrite(args.saved_image_name(), w.get_result());
+    } else {
+        cv::imshow("output", w.get_result());
+        cv::waitKey();
+    }
 
     return 0;
 }

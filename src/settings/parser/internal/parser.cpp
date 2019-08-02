@@ -1,6 +1,7 @@
 #include "settings/parser/internal/parser.h"
 #include "execute/internal/baseprocess.h"
 #include "settings/messages.h"
+#include "settings/cmdoptions.h"
 #include "base/blur.h"
 #include "base/linearfilter.h"
 #include "base/show.h"
@@ -29,6 +30,18 @@ void Parser::set_image(cv::Mat& frame, bool& ok) noexcept
     ok = !has_errors;
     if (!ok) {
         printe(IMG_NOT_FOUND_MSG);
+    }
+}
+
+void Parser::check_save_path() noexcept
+{
+    if (!strcmp(argv[index], command_line::options::SAVE_OPTION)) {
+        if (argc - index++ > 1) {
+            path_to_save = argv[index];
+            index++;
+        } else {
+            add_error(SET_SAVE_PATH_MSG);
+        }
     }
 }
 
