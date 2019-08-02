@@ -14,7 +14,6 @@ static std::map<string, BLUR_TYPE> OPTIONS_VALUE = {
     {string{options::blur_opt::BLUR_TYPE_VALUES[2]}, BLUR_BILATERAL},
 };
 
-// todo
 Blur::Blur(BLUR_TYPE t, cv::Mat&& src) :
     type(t),
     source(std::forward<cv::Mat>(src))

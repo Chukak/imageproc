@@ -7,11 +7,11 @@ using namespace command_line;
 
 int main(int argc, char** argv)
 {
-    Wrapper w{nullptr};
+    Wrapper w;
     Arguments args(argc, argv, &w);
 
     if (!args.is_valid()) {
-         std::cerr << "not valid\n";
+        std::cerr << "not valid\n";
         return 1;
     }
 
