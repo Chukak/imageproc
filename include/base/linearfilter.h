@@ -7,8 +7,10 @@
 class LinearFilter : public Operation
 {
 public:
-    explicit LinearFilter(cv::Mat&& src, int8_t ker_size = 3);
+    explicit LinearFilter(cv::Mat&& src);
 
+    inline void set_kernel_size(int k) noexcept
+    { kernel_size = k; }
     inline void set_anchor(int x, int y) noexcept
     { anchor = cv::Point(x, y); }
     inline void set_delta(int d) noexcept

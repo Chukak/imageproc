@@ -18,11 +18,10 @@ static std::map<string, THRESHOLD_TYPE> OPTIONS_VALUE = {
 
 const int16_t& Threshold::max_threshold_value{255};
 
-Threshold::Threshold(THRESHOLD_TYPE t, cv::Mat&& src, int16_t v, bool gray) :
+Threshold::Threshold(THRESHOLD_TYPE t, cv::Mat&& src, bool gray) :
     type(t),
     is_gray(gray),
-    source(std::forward<cv::Mat>(src)),
-    value(v)
+    source(std::forward<cv::Mat>(src))
 {
 }
 

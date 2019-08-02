@@ -15,8 +15,10 @@ enum THRESHOLD_TYPE
 class Threshold : public Operation
 {
 public:
-    explicit Threshold(THRESHOLD_TYPE t, cv::Mat&& src, int16_t v, bool gray = false);
+    explicit Threshold(THRESHOLD_TYPE t, cv::Mat&& src, bool gray = false);
 
+    inline void set_value(int v) noexcept
+    { value = v; }
     static THRESHOLD_TYPE parse_type(const char* flag) noexcept;
     static bool precheck_value(int16_t v) noexcept;
 public:
@@ -25,7 +27,7 @@ private:
     THRESHOLD_TYPE type{THRESHOLD_BINARY};
     bool is_gray{false};
     cv::Mat source;
-    int16_t value{static_cast<int16_t>(2 / max_threshold_value)};
+    int16_t value{static_cast<int16_t>(max_threshold_value / 2)};
     static const int16_t& max_threshold_value;
 };
 

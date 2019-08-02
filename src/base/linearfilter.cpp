@@ -1,9 +1,8 @@
 #include "base/linearfilter.h"
 #include <opencv2/imgproc.hpp>
 
-LinearFilter::LinearFilter(cv::Mat&& src, int8_t ker_size) :
-    source(std::forward<cv::Mat>(src)),
-    kernel_size(ker_size)
+LinearFilter::LinearFilter(cv::Mat&& src) :
+    source(std::forward<cv::Mat>(src))
 {
 }
 
