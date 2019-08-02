@@ -9,7 +9,7 @@ class Wrapper
 public:
     Wrapper() = default;
     Wrapper(BaseProcess *p);
-    ~Wrapper();
+    ~Wrapper() = default;
     Wrapper(Wrapper&&) = delete;
     Wrapper(const Wrapper&) = delete;
 
@@ -32,7 +32,7 @@ private:
         return false;
     }
 private:
-    BaseProcess *process{nullptr};
+    std::unique_ptr<BaseProcess> process{nullptr};
     cv::Mat result{};
 };
 
