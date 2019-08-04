@@ -32,6 +32,7 @@ constexpr const char * HELP_MSG
  "                                                                                              Kernel size is: 1(1x1), 3(3x3), 5(5x5), ... 127(127x127). \n"
  "                                                                                              Delta - what value will be added to each pixel of image. \n"
  "                                                                                              Anchor - point relative of the kernel. \n"
+ "    --bright-edge                                                                             Detect bright edges on image. \n"
  "    --save /path/to/image                                                                     Save image to file.\n"
  "\n");
 // todo
@@ -59,7 +60,6 @@ constexpr const char * SET_LINEAR_FILTER_KERNEL_SIZE_MSG("Please add a kernel si
 constexpr const char * SET_LINEAR_FILTER_DELTA_MSG("Please add a delta value.");
 constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point.");
 }
-
 }
 
 #endif // MESSAGES_H

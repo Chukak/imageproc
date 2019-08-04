@@ -10,6 +10,7 @@ constexpr const char * HELP_OPTION("--help");
 constexpr const char * BLUR_OPTION("--blur");
 constexpr const char * THRESHOLD_OPTION("--threshold");
 constexpr const char * LINEAR_FILTER_OPTION("--linear-filter");
+constexpr const char * BRIGHT_EDGE_OPTION("--bright-edge");
 constexpr const char * SAVE_OPTION("--save");
 
 namespace blur_opt
