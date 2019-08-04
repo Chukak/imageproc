@@ -13,6 +13,7 @@ public:
         Show_t,
         Threshold_t,
         LinearFilter_t,
+        DetectBrightEdge_t,
         Invalid
     };
 public:

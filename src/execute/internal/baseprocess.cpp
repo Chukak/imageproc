@@ -3,6 +3,7 @@
 #include "base/show.h"
 #include "base/threshold.h"
 #include "base/linearfilter.h"
+#include "base/detectbrigthedge.h"
 #include <utility>
 
 using namespace std;
@@ -18,6 +19,8 @@ set_type_process<C>::set_type_process(C *obj[[maybe_unused]], BaseProcess *b)
         b->t = BaseProcess::Threshold_t;
     } else if (is_same<C, LinearFilter>::value) {
         b->t = BaseProcess::LinearFilter_t;
+    } else if (is_same<C, DetectBrigthEdge>::value) {
+        b->t = BaseProcess::DetectBrightEdge_t;
     } else {
         b->t = BaseProcess::Invalid;
     }
@@ -27,3 +30,4 @@ template class set_type_process<Blur>;
 template class set_type_process<Show>;
 template class set_type_process<Threshold>;
 template class set_type_process<LinearFilter>;
+template class set_type_process<DetectBrigthEdge>;
