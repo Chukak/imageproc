@@ -14,6 +14,7 @@ public:
         Threshold_t,
         LinearFilter_t,
         DetectBrightEdge_t,
+        Remapping_t,
         Invalid
     };
 public:

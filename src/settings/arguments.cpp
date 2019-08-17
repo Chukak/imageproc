@@ -6,7 +6,8 @@
 #include "settings/parser/parserlinearfilter_t.h"
 #include "settings/parser/parsershow_t.h"
 #include "settings/parser/parserthreshold_t.h"
-#include "settings/parser/detectbrightedge_t.h"
+#include "settings/parser/parserdetectbrightedge_t.h"
+#include "settings/parser/parserremapping_t.h"
 
 using namespace command_line;
 
@@ -27,7 +28,9 @@ Arguments::Arguments(int argc, char** argv, Wrapper *w)
             } else if (!strcmp(argv[c], LINEAR_FILTER_OPTION)) {
                 save_path = run_parser_by_default<ParserLinearFilter_t>(finish, argc, argv, w);
             } else if (!strcmp(argv[c], BRIGHT_EDGE_OPTION)) {
-                save_path = run_parser_by_default<DetectBrightEdge_t>(finish, argc, argv, w);
+                save_path = run_parser_by_default<ParserDetectBrightEdge_t>(finish, argc, argv, w);
+            } else if (!strcmp(argv[c], REMAPPING_OPTION)) {
+                save_path = run_parser_by_default<ParserRemapping_t>(finish, argc, argv, w);
             } else {
                 save_path = run_parser_by_default<ParserShow_t>(finish, argc, argv, w);
             }

@@ -5,6 +5,7 @@
 #include "base/threshold.h"
 #include "base/linearfilter.h"
 #include "base/detectbrigthedge.h"
+#include "base/remapping.h"
 
 Wrapper::Wrapper(BaseProcess *p) :
     process(p)
@@ -38,6 +39,10 @@ bool Wrapper::run_exec() noexcept
         }
         case BaseProcess::DetectBrightEdge_t: {
             auto p = dynamic_cast<Process<DetectBrigthEdge> *>(process.get());
+            return run_as_default(p);
+        }
+        case BaseProcess::Remapping_t: {
+            auto p = dynamic_cast<Process<Remapping> *>(process.get());
             return run_as_default(p);
         }
         default:

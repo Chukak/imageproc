@@ -33,20 +33,22 @@ constexpr const char * HELP_MSG
  "                                                                                              Delta - what value will be added to each pixel of image. \n"
  "                                                                                              Anchor - point relative of the kernel. \n"
  "    --bright-edge                                                                             Detect bright edges on image. \n"
+ "    --remapping [--type (remapping type)]                                                     Remapping image.\n"
+ "                                                                                              Remapping type: [upside-down, x-direction, both-direction].\n"
  "    --save /path/to/image                                                                     Save image to file.\n"
  "\n");
 // todo
 constexpr const char * IMG_NOT_FOUND_MSG("Image '' not found!");
 constexpr const char* SET_SAVE_PATH_MSG("Please set path to saved image!");
 
-namespace  blur
+namespace blur
 {
 constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point.");
 constexpr const char * BLUR_TYPE_MSG("Incorrect blur type. Avaliable types: [gaussian, median, bilatetial].");
 constexpr const char * SET_BLUR_TYPE_MSG("Please add a blur type.");
 }
 
-namespace  threshold
+namespace threshold
 {
 constexpr const char * THRESHOLD_TYPE_MSG("Incorrect threshold type. Available types: [binary, binary-inv, truncated, to-zero, to-zero-inv].");
 constexpr const char * THRESHOLD_VALUE_MSG("Threshold value must be in range 0-255.");
@@ -59,6 +61,12 @@ constexpr const char * LINEAR_FILTER_KERNEL_SIZE_MSG("Incorrect kernel size. Ker
 constexpr const char * SET_LINEAR_FILTER_KERNEL_SIZE_MSG("Please add a kernel size value.");
 constexpr const char * SET_LINEAR_FILTER_DELTA_MSG("Please add a delta value.");
 constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point.");
+}
+
+namespace remapping
+{
+constexpr const char * REMAPPING_TYPE_MSG("Incorrect remapping type. Available types: [upside-down, x-direction, both-direction].");
+constexpr const char * SET_REMAPPING_TYPE_MSG("Please add a remapping type.");
 }
 }
 

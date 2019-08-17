@@ -11,6 +11,7 @@ constexpr const char * BLUR_OPTION("--blur");
 constexpr const char * THRESHOLD_OPTION("--threshold");
 constexpr const char * LINEAR_FILTER_OPTION("--linear-filter");
 constexpr const char * BRIGHT_EDGE_OPTION("--bright-edge");
+constexpr const char * REMAPPING_OPTION("--remapping");
 constexpr const char * SAVE_OPTION("--save");
 
 namespace blur_opt
@@ -39,6 +40,14 @@ namespace linear_filter_opt
 constexpr const char * LINEAR_FILTER_KERNEL_SIZE("--kernel-size");
 constexpr const char * LINEAR_FILTER_ANCHOR("--anchor");
 constexpr const char * LINEAR_FILTER_DELTA("--delta");
+}
+
+namespace remapping_opt
+{
+constexpr const char * REMAPPING_TYPE("--type");
+constexpr const char * REMAPPING_TYPE_VALUES[] = {"upside-down",
+                                                 "x-direction",
+                                                 "both-direction"};
 }
 
 }

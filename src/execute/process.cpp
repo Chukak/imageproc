@@ -4,6 +4,7 @@
 #include "base/threshold.h"
 #include "base/linearfilter.h"
 #include "base/detectbrigthedge.h"
+#include "base/remapping.h"
 
 
 template<class C>
@@ -31,3 +32,4 @@ template class Process<Show>;
 template class Process<Threshold>;
 template class Process<LinearFilter>;
 template class Process<DetectBrigthEdge>;
+template class Process<Remapping>;
