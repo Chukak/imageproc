@@ -3,10 +3,10 @@
 
 #include "settings/parser/internal/parser.h"
 
-class DetectBrightEdge_t : public Parser
+class ParserDetectBrightEdge_t : public Parser
 {
 public:
-    explicit DetectBrightEdge_t(int argc, char** argv, Wrapper* w);
+    explicit ParserDetectBrightEdge_t(int argc, char** argv, Wrapper* w);
     void parse() noexcept final;
 };
 

@@ -1,12 +1,12 @@
-#include "settings/parser/detectbrightedge_t.h"
+#include "settings/parser/parserdetectbrightedge_t.h"
 #include "base/detectbrigthedge.h"
 
-DetectBrightEdge_t::DetectBrightEdge_t(int argc, char** argv, Wrapper* w) :
+ParserDetectBrightEdge_t::ParserDetectBrightEdge_t(int argc, char** argv, Wrapper* w) :
     Parser(argc, argv, w)
 {
 }
 
-void DetectBrightEdge_t::parse() noexcept
+void ParserDetectBrightEdge_t::parse() noexcept
 {
    ++index;
     check_save_path();
