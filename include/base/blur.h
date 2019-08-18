@@ -8,20 +8,26 @@
 
 enum BLUR_TYPE : OperationType::type_t
 {
-    BLUR_ORIGINAL,
-    BLUR_GAUSSIAN,
-    BLUR_MEDIAN,
-    BLUR_BILATERAL
+	BLUR_ORIGINAL,
+	BLUR_GAUSSIAN,
+	BLUR_MEDIAN,
+	BLUR_BILATERAL
 };
 
-class Blur : public Operation, public KernelSize, public OperationType, public AnchorPoint
+class Blur
+    : public Operation
+    , public KernelSize
+    , public OperationType
+    , public AnchorPoint
 {
 public:
-    explicit Blur(COMMON_CLASS_TYPE t, cv::Mat&& src);
+	explicit Blur(COMMON_CLASS_TYPE t, cv::Mat&& src);
+
 public:
-    void run() final;
+	void run() final;
+
 private:
-    OT_VARIABLES
+	OT_VARIABLES
 };
 
 #endif

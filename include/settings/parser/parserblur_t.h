@@ -6,8 +6,8 @@
 class ParserBlur_t : public Parser
 {
 public:
-    explicit ParserBlur_t(int argc, char** argv, Wrapper* w);
-    void parse() noexcept final;
+	explicit ParserBlur_t(int argc, char** argv, Wrapper* w);
+	void parse() noexcept final;
 };
 
 #endif // PARSERBLUR_T_H

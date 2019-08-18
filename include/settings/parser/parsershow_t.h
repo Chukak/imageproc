@@ -6,8 +6,8 @@
 class ParserShow_t : public Parser
 {
 public:
-    explicit ParserShow_t(int argc, char** argv, Wrapper* w);
-    void parse() noexcept final;
+	explicit ParserShow_t(int argc, char** argv, Wrapper* w);
+	void parse() noexcept final;
 };
 
 #endif // PARSERSHOW_T_H

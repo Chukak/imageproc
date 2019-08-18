@@ -6,21 +6,22 @@
 class Wrapper
 {
 public:
-    Wrapper() = default;
-    Wrapper(Process *p);
-    ~Wrapper() = default;
-    Wrapper(Wrapper&&) = delete;
-    Wrapper(const Wrapper&) = delete;
+	Wrapper() = default;
+	Wrapper(Process* p);
+	~Wrapper() = default;
+	Wrapper(Wrapper&&) = delete;
+	Wrapper(const Wrapper&) = delete;
 
-    Wrapper& operator=(Wrapper&&) = delete;
-    Wrapper& operator=(const Wrapper&) = delete;
+	Wrapper& operator=(Wrapper&&) = delete;
+	Wrapper& operator=(const Wrapper&) = delete;
 
-    void set(Process *p) noexcept;
-    bool exec() noexcept;
-    inline cv::Mat get() const noexcept { return result; }
+	void set(Process* p) noexcept;
+	bool exec() noexcept;
+	inline cv::Mat get() const noexcept { return result; }
+
 private:
-    std::unique_ptr<Process> process{nullptr};
-    cv::Mat result{};
+	std::unique_ptr<Process> process{nullptr};
+	cv::Mat result{};
 };
 
 #endif // WRAPPER_H

@@ -2,44 +2,43 @@
 
 Process::Process(std::unique_ptr<Operation>&& obj) :
     object(std::forward<decltype(obj)>(obj))
-{    
-}
+{}
 
 Process::Process(Process&& p) noexcept
 {
-    object.reset(p.object.get());
-    p.object.reset();
+	object.reset(p.object.get());
+	p.object.reset();
 }
 
 Process::Process(const Process& p) noexcept
 {
-    object.reset(p.object.get());
+	object.reset(p.object.get());
 }
 
-Process& Process::operator=(Process &&p) noexcept
+Process& Process::operator=(Process&& p) noexcept
 {
-    object.reset(p.object.get());
-    p.object.reset();
-    return *this;
+	object.reset(p.object.get());
+	p.object.reset();
+	return *this;
 }
 
 Process& Process::operator=(const Process& p) noexcept
 {
-    object.reset(p.object.get());
-    return *this;
+	object.reset(p.object.get());
+	return *this;
 }
 
-void Process::set(Operation * obj) noexcept
+void Process::set(Operation* obj) noexcept
 {
-    object.reset(obj);
+	object.reset(obj);
 }
 
 void Process::exec() noexcept
 {
-    object->run();
+	object->run();
 }
 
-const Operation * Process::get() const noexcept
+const Operation* Process::get() const noexcept
 {
-    return const_cast<decltype(object.get())>(object.get());
+	return const_cast<decltype(object.get())>(object.get());
 }

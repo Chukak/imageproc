@@ -6,8 +6,8 @@
 class ParserThreshold_t : public Parser
 {
 public:
-    explicit ParserThreshold_t(int argc, char** argv, Wrapper* w);
-    void parse() noexcept final;
+	explicit ParserThreshold_t(int argc, char** argv, Wrapper* w);
+	void parse() noexcept final;
 };
 
 #endif // PARSERTHRESHOLD_T_H

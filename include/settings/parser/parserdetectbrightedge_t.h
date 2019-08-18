@@ -6,8 +6,8 @@
 class ParserDetectBrightEdge_t : public Parser
 {
 public:
-    explicit ParserDetectBrightEdge_t(int argc, char** argv, Wrapper* w);
-    void parse() noexcept final;
+	explicit ParserDetectBrightEdge_t(int argc, char** argv, Wrapper* w);
+	void parse() noexcept final;
 };
 
 #endif // DETECTBRIGHTEDGE_T_H

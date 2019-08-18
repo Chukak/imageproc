@@ -6,19 +6,23 @@
 
 enum REMAPPING_TYPE : OperationType::type_t
 {
-    REMAPPING_UPSIDE_DOWN,
-    REMAPPING_X_DIRECTION,
-    REMAPPING_BOTH_DIRECTION
+	REMAPPING_UPSIDE_DOWN,
+	REMAPPING_X_DIRECTION,
+	REMAPPING_BOTH_DIRECTION
 };
 
-class Remapping : public Operation, public OperationType
+class Remapping
+    : public Operation
+    , public OperationType
 {
 public:
-    Remapping(COMMON_CLASS_TYPE t, cv::Mat&& src);
+	Remapping(COMMON_CLASS_TYPE t, cv::Mat&& src);
+
 public:
-    void run() final;
+	void run() final;
+
 private:
-    OT_VARIABLES
+	OT_VARIABLES
 };
 
 #endif // REMAPPING_H
