@@ -6,3 +6,7 @@ Show::Show(const char * path)
     result = cv::imread(path, -1);
     ok = !result.empty();
 }
+
+void Show::run()
+{
+}

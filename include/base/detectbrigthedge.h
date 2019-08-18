@@ -2,20 +2,18 @@
 #define DETECTBRIGTHEDGE_H
 
 #include "interface/operation.h"
+#include "interface/kernelsize.h"
 
-class DetectBrigthEdge : public Operation
+class DetectBrigthEdge : public Operation, public KernelSize
 {
 public:
    explicit DetectBrigthEdge(cv::Mat&& src);
-
 public:
     void run() final;
 private:
-    cv::Mat source;
-    int delta{0};
     double scale{1};
-    int8_t kernel_size{3};
-    static const double alpha;
+    const int delta{0};
+    const double alpha{0.5};
 };
 
 #endif // DETECTBRIGTHEDGE_H

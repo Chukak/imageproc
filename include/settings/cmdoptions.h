@@ -1,34 +1,37 @@
 #ifndef CMDOPTIONS_H
 #define CMDOPTIONS_H
 
+#include "settings/internal/types.h"
+
 namespace command_line
 {
 namespace options
 {
 
-constexpr const char * HELP_OPTION("--help");
-constexpr const char * BLUR_OPTION("--blur");
-constexpr const char * THRESHOLD_OPTION("--threshold");
-constexpr const char * LINEAR_FILTER_OPTION("--linear-filter");
-constexpr const char * BRIGHT_EDGE_OPTION("--bright-edge");
-constexpr const char * REMAPPING_OPTION("--remapping");
-constexpr const char * SAVE_OPTION("--save");
+static message_t HELP_OPTION("--help");
+static message_t BLUR_OPTION("--blur");
+static message_t THRESHOLD_OPTION("--threshold");
+static message_t LINEAR_FILTER_OPTION("--linear-filter");
+static message_t BRIGHT_EDGE_OPTION("--bright-edge");
+static message_t REMAPPING_OPTION("--remapping");
+static message_t SAVE_OPTION("--save");
 
 namespace blur_opt
 {
-constexpr const char * BLUR_TYPE("--type");
-constexpr const char * BLUR_POINT("--point-anchor");
-constexpr const char * BLUR_TYPE_VALUES[] = {"gaussian",
+static message_t BLUR_TYPE("--type");
+static message_t BLUR_POINT("--point-anchor");
+static message_t BLUR_KERNEL_SIZE("--kernel-size");
+static messages_t BLUR_TYPE_VALUES = {"gaussian",
                                              "median",
                                              "bilaterial"};
 }
 
 namespace  threshold_opt
 {
-constexpr const char * THRESHOLD_TYPE("--type");
-constexpr const char * THRESHOLD_VALUE("--value");
-constexpr const char * THRESHOLD_GRAY("--gray");
-constexpr const char * THRESHOLD_TYPE_VALUES[] = {"binary",
+static message_t THRESHOLD_TYPE("--type");
+static message_t THRESHOLD_VALUE("--value");
+static message_t THRESHOLD_GRAY("--gray");
+static messages_t THRESHOLD_TYPE_VALUES = {"binary",
                                                   "binary-inv",
                                                   "truncated",
                                                   "to-zero",
@@ -37,15 +40,15 @@ constexpr const char * THRESHOLD_TYPE_VALUES[] = {"binary",
 
 namespace linear_filter_opt
 {
-constexpr const char * LINEAR_FILTER_KERNEL_SIZE("--kernel-size");
-constexpr const char * LINEAR_FILTER_ANCHOR("--anchor");
-constexpr const char * LINEAR_FILTER_DELTA("--delta");
+static message_t LINEAR_FILTER_KERNEL_SIZE("--kernel-size");
+static message_t LINEAR_FILTER_ANCHOR("--anchor");
+static message_t LINEAR_FILTER_DELTA("--delta");
 }
 
 namespace remapping_opt
 {
-constexpr const char * REMAPPING_TYPE("--type");
-constexpr const char * REMAPPING_TYPE_VALUES[] = {"upside-down",
+static message_t REMAPPING_TYPE("--type");
+static messages_t REMAPPING_TYPE_VALUES = {"upside-down",
                                                  "x-direction",
                                                  "both-direction"};
 }

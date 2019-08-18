@@ -1,10 +1,8 @@
 #include "base/detectbrigthedge.h"
 #include <opencv2/imgproc.hpp>
 
-const double DetectBrigthEdge::alpha{0.5};
-
 DetectBrigthEdge::DetectBrigthEdge(cv::Mat&& src) :
-    source(std::forward<cv::Mat>(src))
+    Operation(std::forward<cv::Mat>(src))
 {
 }
 

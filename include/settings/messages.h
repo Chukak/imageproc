@@ -1,14 +1,15 @@
-#ifndef MESSAGES_H
-#define MESSAGES_H
+#ifndef message_tS_H
+#define message_tS_H
 
+#include "settings/internal/types.h"
 #include <iostream>
 
-inline void printm(const char * msg) noexcept
+inline void printm(message_t msg) noexcept
 {
     std::cout << msg << std::endl;
 }
 
-inline void printe(const char * msg) noexcept
+inline void printe(message_t msg) noexcept
 {
     std::cerr << msg << std::endl;
 }
@@ -17,7 +18,7 @@ namespace msg
 {
 
 // todo
-constexpr const char * HELP_MSG
+static message_t HELP_MSG
 ("Usage: " PROGRAM_NAME " [method] [option (value)]... [--save /path/to/saved/image] /path/to/image \n"
  "Methods: \n"
  "    --help                                                                                    Show this information.\n"
@@ -38,36 +39,38 @@ constexpr const char * HELP_MSG
  "    --save /path/to/image                                                                     Save image to file.\n"
  "\n");
 // todo
-constexpr const char * IMG_NOT_FOUND_MSG("Image '' not found!");
-constexpr const char* SET_SAVE_PATH_MSG("Please set path to saved image!");
+static const std::string IMG_NOT_FOUND_MSG("Image '' not found!");
+static message_t SET_SAVE_PATH_MSG("Please set path to saved image!");
 
 namespace blur
 {
-constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point.");
-constexpr const char * BLUR_TYPE_MSG("Incorrect blur type. Avaliable types: [gaussian, median, bilatetial].");
-constexpr const char * SET_BLUR_TYPE_MSG("Please add a blur type.");
+static message_t SET_X_Y_MSG("Please set the X and Y position of point.");
+static message_t BLUR_TYPE_MSG("Incorrect blur type. Avaliable types: [gaussian, median, bilatetial].");
+static message_t SET_BLUR_TYPE_MSG("Please add a blur type.");
+static message_t SET_BLUR_KERNEL_SIZE_MSG("Please add a kernel size value.");
+static message_t BLUR_KERNEL_SIZE_MSG("Incorrect kernel size. Kernel size must be: [1x1, 3x3, ... 127x127].");
 }
 
 namespace threshold
 {
-constexpr const char * THRESHOLD_TYPE_MSG("Incorrect threshold type. Available types: [binary, binary-inv, truncated, to-zero, to-zero-inv].");
-constexpr const char * THRESHOLD_VALUE_MSG("Threshold value must be in range 0-255.");
-constexpr const char * SET_THRESHOLD_TYPE_MSG("Please add a threshold type.");
+static message_t THRESHOLD_TYPE_MSG("Incorrect threshold type. Available types: [binary, binary-inv, truncated, to-zero, to-zero-inv].");
+static message_t THRESHOLD_VALUE_MSG("Threshold value must be in range 0-255.");
+static message_t SET_THRESHOLD_TYPE_MSG("Please add a threshold type.");
 }
 
 namespace linear_filter
 {
-constexpr const char * LINEAR_FILTER_KERNEL_SIZE_MSG("Incorrect kernel size. Kernel size must be: [1x1, 3x3, ... 127x127].");
-constexpr const char * SET_LINEAR_FILTER_KERNEL_SIZE_MSG("Please add a kernel size value.");
-constexpr const char * SET_LINEAR_FILTER_DELTA_MSG("Please add a delta value.");
-constexpr const char * SET_X_Y_MSG("Please set the X and Y position of point.");
+static message_t LINEAR_FILTER_KERNEL_SIZE_MSG("Incorrect kernel size. Kernel size must be: [1x1, 3x3, ... 127x127].");
+static message_t SET_LINEAR_FILTER_KERNEL_SIZE_MSG("Please add a kernel size value.");
+static message_t SET_LINEAR_FILTER_DELTA_MSG("Please add a delta value.");
+static message_t SET_X_Y_MSG("Please set the X and Y position of point.");
 }
 
 namespace remapping
 {
-constexpr const char * REMAPPING_TYPE_MSG("Incorrect remapping type. Available types: [upside-down, x-direction, both-direction].");
-constexpr const char * SET_REMAPPING_TYPE_MSG("Please add a remapping type.");
+static message_t REMAPPING_TYPE_MSG("Incorrect remapping type. Available types: [upside-down, x-direction, both-direction].");
+static message_t SET_REMAPPING_TYPE_MSG("Please add a remapping type.");
 }
 }
 
-#endif // MESSAGES_H
+#endif // message_tS_H

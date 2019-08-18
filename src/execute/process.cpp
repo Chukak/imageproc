@@ -1,35 +1,45 @@
 #include "execute/process.h"
-#include "base/blur.h"
-#include "base/show.h"
-#include "base/threshold.h"
-#include "base/linearfilter.h"
-#include "base/detectbrigthedge.h"
-#include "base/remapping.h"
 
-
-template<class C>
-Process<C>::Process(C * obj, void (C::*fn)()) :
-    BaseProcess(obj),
-    object(obj),
-    method(fn)
+Process::Process(std::unique_ptr<Operation>&& obj) :
+    object(std::forward<decltype(obj)>(obj))
 {    
 }
 
-template<class C>
-void Process<C>::set_data(C * obj, void (C::*fn)()) noexcept
+Process::Process(Process&& p) noexcept
 {
-
+    object.reset(p.object.get());
+    p.object.reset();
 }
 
-template<class C>
-void Process<C>::exec() noexcept
+Process::Process(const Process& p) noexcept
 {
-    method(object.get());
+    object.reset(p.object.get());
 }
 
-template class Process<Blur>;
-template class Process<Show>;
-template class Process<Threshold>;
-template class Process<LinearFilter>;
-template class Process<DetectBrigthEdge>;
-template class Process<Remapping>;
+Process& Process::operator=(Process &&p) noexcept
+{
+    object.reset(p.object.get());
+    p.object.reset();
+    return *this;
+}
+
+Process& Process::operator=(const Process& p) noexcept
+{
+    object.reset(p.object.get());
+    return *this;
+}
+
+void Process::set(Operation * obj) noexcept
+{
+    object.reset(obj);
+}
+
+void Process::exec() noexcept
+{
+    object->run();
+}
+
+const Operation * Process::get() const noexcept
+{
+    return const_cast<decltype(object.get())>(object.get());
+}

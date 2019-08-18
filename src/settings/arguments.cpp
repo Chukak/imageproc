@@ -13,31 +13,43 @@ using namespace command_line;
 
 Arguments::Arguments(int argc, char** argv, Wrapper *w)
 {
-    using namespace options;
-
     valid = argc > 1;
     if (valid) {
         for (auto c = 1; c < argc; ++c) {
-            if (!strcmp(argv[c], HELP_OPTION)) {
+            if (argv[c] == options::HELP_OPTION) {
                 show_help();
                 finish = true;
-            } else if (!strcmp(argv[c], BLUR_OPTION)) {
-                save_path = run_parser_by_default<ParserBlur_t>(finish, argc, argv, w);
-            } else if (!strcmp(argv[c], THRESHOLD_OPTION)) {
-                save_path = run_parser_by_default<ParserThreshold_t>(finish, argc, argv, w);
-            } else if (!strcmp(argv[c], LINEAR_FILTER_OPTION)) {
-                save_path = run_parser_by_default<ParserLinearFilter_t>(finish, argc, argv, w);
-            } else if (!strcmp(argv[c], BRIGHT_EDGE_OPTION)) {
-                save_path = run_parser_by_default<ParserDetectBrightEdge_t>(finish, argc, argv, w);
-            } else if (!strcmp(argv[c], REMAPPING_OPTION)) {
-                save_path = run_parser_by_default<ParserRemapping_t>(finish, argc, argv, w);
             } else {
-                save_path = run_parser_by_default<ParserShow_t>(finish, argc, argv, w);
+                ParserWrapper pw(save_path, finish, errors);
+                pw.set_args(argc, argv, w);
+                if (argv[c] == options::BLUR_OPTION) {
+                    pw.run<ParserBlur_t>();
+                } else if (argv[c] == options::THRESHOLD_OPTION) {
+                    pw.run<ParserThreshold_t>();
+                } else if (argv[c] == options::LINEAR_FILTER_OPTION) {
+                    pw.run<ParserLinearFilter_t>();
+                } else if (argv[c] == options::BRIGHT_EDGE_OPTION) {
+                    pw.run<ParserDetectBrightEdge_t>();
+                } else if (argv[c] == options::REMAPPING_OPTION) {
+                    pw.run<ParserRemapping_t>();
+                } else {
+                    pw.run<ParserShow_t>();
+                }
+                if (finish) {
+                    print_errors();
+                }
             }
             break;
         }
     } else {
         show_help();
+    }
+}
+
+void Arguments::print_errors() const noexcept
+{
+    for (const std::string& e : errors) {
+        printe(e.c_str());
     }
 }
 

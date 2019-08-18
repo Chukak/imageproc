@@ -2,8 +2,9 @@
 #define THRESHOLD_H
 
 #include "interface/operation.h"
+#include "interface/operationtype.h"
 
-enum THRESHOLD_TYPE
+enum THRESHOLD_TYPE : OperationType::type_t
 {
     THRESHOLD_BINARY = 0,
     THRESHOLD_BINARY_INVERTED = 1,
@@ -12,23 +13,19 @@ enum THRESHOLD_TYPE
     THRESHOLD_TO_ZERO_INVERTED = 4
 };
 
-class Threshold : public Operation
+class Threshold : public Operation, public OperationType
 {
 public:
-    explicit Threshold(THRESHOLD_TYPE t, cv::Mat&& src, bool gray = false);
-
-    inline void set_value(int v) noexcept
-    { value = v; }
-    static THRESHOLD_TYPE parse_type(const char* flag) noexcept;
-    static bool precheck_value(int16_t v) noexcept;
+    explicit Threshold(COMMON_CLASS_TYPE t, cv::Mat&& src, bool gray = false);
+    void set_value(int v) noexcept;
+    static bool check_value(int16_t v) noexcept;
 public:
     void run() final;
 private:
-    THRESHOLD_TYPE type{THRESHOLD_BINARY};
     bool is_gray{false};
-    cv::Mat source;
+    static const int16_t max_threshold_value{255};
     int16_t value{static_cast<int16_t>(max_threshold_value / 2)};
-    static const int16_t& max_threshold_value;
+    OT_VARIABLES
 };
 
 #endif // THRESHOLD_H

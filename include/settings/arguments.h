@@ -1,7 +1,7 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
-#include <string>
+#include "settings/internal/types.h"
 
 class Wrapper;
 
@@ -18,16 +18,13 @@ public:
 
     Arguments& operator=(Arguments&&) = delete;
     Arguments& operator=(const Arguments&) = delete;
-
-    inline bool is_valid() const noexcept { return valid; }
-    inline bool is_finish() const noexcept { return finish; }
-    inline bool has_save_path() const noexcept { return save_path.length(); }
-    inline const std::string saved_image_name() const noexcept { return save_path; }
-
 private:
-    bool valid{true};
+    void print_errors() const noexcept;
+public:
     bool finish{false};
+    bool valid{true};
     std::string save_path{""};
+    errors_t errors;
 };
 
 void show_help() noexcept;

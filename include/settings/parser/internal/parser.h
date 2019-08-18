@@ -1,51 +1,73 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include "settings/internal/types.h"
 #include "execute/wrapper.h"
-#include "execute/process.h"
 
 class Parser
 {
-public:
-    explicit Parser(int _argc, char** _argv, Wrapper* w);
-    void set_image(cv::Mat& frame, bool& ok = Parser::default_ok_val) noexcept;
-    void check_save_path() noexcept;
-    template<typename ... Args>
-    void set_process(Args ... args) noexcept
-    {
-        if (wrapper) {
-            auto process = make_process(args ...);
-            wrapper->set(process);
-        }
-    }
-    void add_error(const char * e) noexcept;
-    virtual void parse() noexcept = 0;
-
-    inline bool has_error() const noexcept
-    { return has_errors; }
-    inline std::string saved_image_name() const noexcept
-    { return path_to_save; }
+    friend struct ParserWrapper;
 protected:
-    int argc;
-    char** argv;
+    explicit Parser(int _argc, char** _argv, Wrapper* w);
+    void set_image(cv::Mat& frame) noexcept;
+    void set_save_path() noexcept;
+    template<typename C>
+    void set_process(C * o) noexcept;
+    void add_error(message_t e) noexcept;
+    virtual void executed_data(std::string& save, bool& finish, errors_t& errors);
+    template<typename Array>
+    bool find_in(Array array) noexcept;
+public:
+    virtual void parse() noexcept = 0;
+protected:
+    int argc{-1};
+    char** argv{};
     int index{1};
-    bool has_errors{false};
-    std::string path_to_save{""};
+    bool bad{false};
+    std::string save{""};
+    errors_t errors{};
 private:
-    static bool default_ok_val;
-    Wrapper* wrapper{nullptr};
+    // shared_ptr no delete. Todo: fix/update
+    std::unique_ptr<Wrapper, void(*)(Wrapper*)> wrapper{nullptr, [](Wrapper*){}};
 };
 
-template<class C, typename ... Args>
-std::string run_parser_by_default(bool& finish, Args ... args) noexcept
+template<typename C>
+void Parser::set_process(C * o) noexcept
+{
+    wrapper->set(make_process(o));
+}
+
+template<typename Array>
+bool Parser::find_in(Array array) noexcept
+{
+    return std::find(std::begin(array),
+                     std::end(array),
+                     argv[index]) != std::end(array);
+}
+
+struct ParserWrapper
+{
+    explicit ParserWrapper(std::string& s, bool& f, errors_t& e);
+    void set_args(int _argc, char** _argv, Wrapper* _w);
+    template<class C>
+    void run() noexcept;
+private:
+    int argc{-1};
+    char** argv{};
+    Wrapper* w{nullptr};
+    std::string& save;
+    bool& finish;
+    errors_t& errors;
+};
+
+template<class C>
+void ParserWrapper::run() noexcept
 {
     if (std::is_base_of_v<Parser, C>) {
-        C p(args ...);
-        p.parse(); 
-        finish = p.has_error();
-        return std::move(p.saved_image_name());
+        C parser(argc, argv, w);
+        parser.parse();
+        parser.executed_data(save, finish, errors);
     }
-    return "";
 }
 
 #endif // PARSER_H

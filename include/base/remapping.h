@@ -2,24 +2,23 @@
 #define REMAPPING_H
 
 #include "interface/operation.h"
+#include "interface/operationtype.h"
 
-enum REMAPPING_TYPE
+enum REMAPPING_TYPE : OperationType::type_t
 {
     REMAPPING_UPSIDE_DOWN,
     REMAPPING_X_DIRECTION,
     REMAPPING_BOTH_DIRECTION
 };
 
-class Remapping : public Operation
+class Remapping : public Operation, public OperationType
 {
 public:
-    Remapping(REMAPPING_TYPE t, cv::Mat&& src);
-    static REMAPPING_TYPE parse_type(const char* flag) noexcept;
+    Remapping(COMMON_CLASS_TYPE t, cv::Mat&& src);
 public:
     void run() final;
 private:
-    REMAPPING_TYPE type;
-    cv::Mat source;
+    OT_VARIABLES
 };
 
 #endif // REMAPPING_H

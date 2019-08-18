@@ -10,25 +10,25 @@ int main(int argc, char** argv)
     Wrapper w;
     Arguments args(argc, argv, &w);
 
-    if (!args.is_valid()) {
+    if (!args.valid) {
         std::cerr << "not valid\n";
         return 1;
     }
 
-    if (args.is_finish()) {
+    if (args.finish) {
         std::cerr << "finish\n";
         return 0;
     }
 
-    if (!w.run_exec()) {
+    if (!w.exec()) {
          std::cerr << "false exec\n";
         return 1;
     }
 
-    if (args.has_save_path()) {
-        cv::imwrite(args.saved_image_name(), w.get_result());
+    if (!args.save_path.empty()) {
+        cv::imwrite(args.save_path, w.get());
     } else {
-        cv::imshow("output", w.get_result());
+        cv::imshow("output", w.get());
         cv::waitKey();
     }
 

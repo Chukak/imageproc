@@ -1,52 +1,62 @@
 #include "settings/parser/internal/parser.h"
-#include "execute/internal/baseprocess.h"
 #include "settings/messages.h"
 #include "settings/cmdoptions.h"
-#include "base/blur.h"
-#include "base/linearfilter.h"
-#include "base/show.h"
-#include "base/threshold.h"
 #include <opencv2/imgcodecs.hpp>
-
-using namespace msg;
-
-bool Parser::default_ok_val{true};
-
 
 Parser::Parser(int _argc, char ** _argv, Wrapper* w) :
     argc(_argc),
-    argv(_argv),
-    wrapper(w)
+    argv(_argv)
 {
+    wrapper.reset(w);
 }
 
-void Parser::set_image(cv::Mat& frame, bool& ok) noexcept
+void Parser::set_image(cv::Mat& frame) noexcept
 {
-    has_errors = !argc - index > 0;
-    if (!has_errors) {
+    bad = !argc - index > 0;
+    if (!bad) {
         frame = cv::imread(argv[index]);
-        has_errors = frame.empty();
+        bad = frame.empty();
     }
-    ok = !has_errors;
-    if (!ok) {
-        printe(IMG_NOT_FOUND_MSG);
+    if (bad) {
+        add_error(msg::IMG_NOT_FOUND_MSG);
     }
 }
 
-void Parser::check_save_path() noexcept
+void Parser::set_save_path() noexcept
 {
-    if (!strcmp(argv[index], command_line::options::SAVE_OPTION)) {
+    if (argv[index] == command_line::options::SAVE_OPTION) {
         if (argc - index++ > 1) {
-            path_to_save = argv[index];
+            save = argv[index];
             index++;
         } else {
-            add_error(SET_SAVE_PATH_MSG);
+            add_error(msg::SET_SAVE_PATH_MSG);
         }
     }
 }
 
-void Parser::add_error(const char * e) noexcept
+void Parser::add_error(message_t e) noexcept
 {
-    has_errors = true;
-    printe(e);
+    bad = true;
+    errors.emplace_back(e);
+}
+
+void Parser::executed_data(std::string &save, bool &finish, errors_t &errors)
+{
+    save = this->save;
+    finish = bad;
+    errors = this->errors;
+}
+
+ParserWrapper::ParserWrapper(std::string& s, bool& f, errors_t& e) :
+    save(s),
+    finish(f),
+    errors(e)
+{
+}
+
+void ParserWrapper::set_args(int _argc, char** _argv, Wrapper* _w)
+{
+    argc = _argc;
+    argv = _argv;
+    w = _w;
 }

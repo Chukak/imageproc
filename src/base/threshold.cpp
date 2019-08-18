@@ -1,27 +1,29 @@
 #include "base/threshold.h"
 #include "settings/cmdoptions.h"
-#include <map>
-#include <string>
 #include <opencv2/imgproc.hpp>
 
-using namespace std;
-using namespace command_line;
-
-// check cmdoptions;
-static std::map<string, THRESHOLD_TYPE> OPTIONS_VALUE = {
-    {string{options::threshold_opt::THRESHOLD_TYPE_VALUES[0]}, THRESHOLD_BINARY},
-    {string{options::threshold_opt::THRESHOLD_TYPE_VALUES[1]}, THRESHOLD_BINARY_INVERTED},
-    {string{options::threshold_opt::THRESHOLD_TYPE_VALUES[2]}, THRESHOLD_TRUNCATED},
-    {string{options::threshold_opt::THRESHOLD_TYPE_VALUES[3]}, THRESHOLD_TO_ZERO},
-    {string{options::threshold_opt::THRESHOLD_TYPE_VALUES[4]}, THRESHOLD_TO_ZERO_INVERTED},
+OperationType::options_t Threshold::options = {
+    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[0],
+    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[1],
+    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[2],
+    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[3],
+    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[4]
 };
 
-const int16_t& Threshold::max_threshold_value{255};
+OperationType::types_t Threshold::types = {
+    THRESHOLD_BINARY,
+    THRESHOLD_BINARY_INVERTED,
+    THRESHOLD_TRUNCATED,
+    THRESHOLD_TO_ZERO,
+    THRESHOLD_TO_ZERO_INVERTED
+};
 
-Threshold::Threshold(THRESHOLD_TYPE t, cv::Mat&& src, bool gray) :
-    type(t),
-    is_gray(gray),
-    source(std::forward<cv::Mat>(src))
+OperationType::type_t Threshold::default_type = THRESHOLD_BINARY;
+
+Threshold::Threshold(COMMON_CLASS_TYPE t, cv::Mat&& src, bool gray) :
+    Operation(std::forward<cv::Mat>(src)),
+    OperationType(t),
+    is_gray(gray)
 {
 }
 
@@ -34,19 +36,16 @@ void Threshold::run()
         source.copyTo(copy);
     }
 
-    cv::threshold(copy, result, value, max_threshold_value, type);
+    cv::threshold(copy, result, value, max_threshold_value, static_cast<THRESHOLD_TYPE>(type));
     ok = !result.empty();
 }
 
-THRESHOLD_TYPE Threshold::parse_type(const char *flag) noexcept
+void Threshold::set_value(int v) noexcept
 {
-    if (OPTIONS_VALUE.count(flag)) {
-        return OPTIONS_VALUE[flag];
-    }
-    return THRESHOLD_BINARY;
+    value = v;
 }
 
-bool Threshold::precheck_value(int16_t v) noexcept
+bool Threshold::check_value(int16_t v) noexcept
 {
     return v > -1 && v <= max_threshold_value;
 }

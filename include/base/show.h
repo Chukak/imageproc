@@ -7,7 +7,7 @@ class Show : public Operation
 {
 public:
     explicit Show(const char * path);
-    void run() final {}
+    void run() final;
 };
 
 #endif // SHOW_H

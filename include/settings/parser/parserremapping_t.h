@@ -8,9 +8,6 @@ class ParserRemapping_t : public Parser
 public:
     explicit ParserRemapping_t(int argc, char** argv, Wrapper* w);
     void parse() noexcept final;
-
-private:
-    bool find_value() const noexcept;
 };
 
 #endif // PARSEREMAPPING_T_H

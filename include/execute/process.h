@@ -1,35 +1,33 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include <memory>
-#include <functional>
-#include "execute/internal/baseprocess.h"
+#include "base/interface/operation.h"
 
-template<class C>
-class Process : public BaseProcess
+class Process
 {
+    template<typename T>
+    friend auto make_process(T*) noexcept;
 public:
-    Process();
-    Process(C * obj, void (C::*fn)());
-    ~Process() final = default;
-    Process(Process&&) noexcept = default;
-    Process(const Process&) = default;
+    Process() = default;
+    Process(std::unique_ptr<Operation>&& obj);
+    ~Process() = default;
+    Process(Process&&) noexcept;
+    Process(const Process&) noexcept;
 
-    Process& operator=(Process&&) noexcept = default;
-    Process& operator=(const Process&) = default;
+    Process& operator=(Process&&) noexcept;
+    Process& operator=(const Process&) noexcept;
 
-    void set_data(C * obj, void (C::*fn)()) noexcept;
+    void set(Operation * obj) noexcept;
     void exec() noexcept;
-    auto obj() const noexcept { return object; }
+    const Operation * get() const noexcept;
 private:
-    std::shared_ptr<C> object{nullptr};
-    std::function<void(C*)> method{nullptr};
+    std::unique_ptr<Operation> object{nullptr};
 };
 
 template<typename T>
-inline auto make_process(T* obj, void (T::*fn)()) noexcept
+auto make_process(T* obj) noexcept
 {
-    return new Process<T>(obj, fn);
+    return new Process(std::unique_ptr<T>(obj));
 }
 
 #endif // PROCESS_H

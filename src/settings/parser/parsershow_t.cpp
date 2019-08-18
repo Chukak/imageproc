@@ -8,7 +8,7 @@ ParserShow_t::ParserShow_t(int argc, char** argv, Wrapper* w) :
 
 void ParserShow_t::parse() noexcept
 {
-    check_save_path();
+    set_save_path();
     auto show = new Show(argv[index]);
-    set_process(show, &Show::run);
+    set_process(show);
 }

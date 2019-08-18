@@ -2,7 +2,7 @@
 #include <opencv2/imgproc.hpp>
 
 LinearFilter::LinearFilter(cv::Mat&& src) :
-    source(std::forward<cv::Mat>(src))
+    Operation(std::forward<cv::Mat>(src))
 {
 }
 
@@ -14,14 +14,7 @@ void LinearFilter::run()
     ok = !result.empty();
 }
 
-bool LinearFilter::precheck_kernel_size(int8_t k) noexcept
+void LinearFilter::set_delta(int d) noexcept
 {
-    bool result = k > 0;
-    for (auto j = 1; j <= 127; ++j) {
-        if (k == j) {
-            result = true;
-            break;
-        }
-    }
-    return result;
+    delta = d;
 }

@@ -9,12 +9,11 @@ ParserDetectBrightEdge_t::ParserDetectBrightEdge_t(int argc, char** argv, Wrappe
 void ParserDetectBrightEdge_t::parse() noexcept
 {
    ++index;
-    check_save_path();
+    set_save_path();
     cv::Mat frame;
-    bool ok;
-    set_image(frame, ok);
-    if (ok) {
+    set_image(frame);
+    if (!bad) {
         auto bright_edge = new DetectBrigthEdge(std::move(frame));
-        set_process(bright_edge, &DetectBrigthEdge::run);
+        set_process(bright_edge);
     }
 }

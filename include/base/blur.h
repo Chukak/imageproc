@@ -2,9 +2,11 @@
 #define BLUR_H
 
 #include "interface/operation.h"
-#include <opencv2/core/types.hpp>
+#include "interface/kernelsize.h"
+#include "interface/operationtype.h"
+#include "interface/anchorpoint.h"
 
-enum BLUR_TYPE
+enum BLUR_TYPE : OperationType::type_t
 {
     BLUR_ORIGINAL,
     BLUR_GAUSSIAN,
@@ -12,21 +14,14 @@ enum BLUR_TYPE
     BLUR_BILATERAL
 };
 
-class Blur : public Operation
+class Blur : public Operation, public KernelSize, public OperationType, public AnchorPoint
 {
 public:
-    explicit Blur(BLUR_TYPE t, cv::Mat&& src);
-
-    inline void set_anchor(cv::Point&& anch) noexcept { anchor = std::forward<cv::Point>(anch); }
-    static BLUR_TYPE parse_type(const char* flag) noexcept;
+    explicit Blur(COMMON_CLASS_TYPE t, cv::Mat&& src);
 public:
     void run() final;
 private:
-    BLUR_TYPE type;
-    cv::Mat source;
-    cv::Point anchor{-1, -1};
-    short max_kernel_length{27};
+    OT_VARIABLES
 };
-
 
 #endif
