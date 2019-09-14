@@ -36,6 +36,7 @@ static message_t HELP_MSG(
     "    --bright-edge                                                                             Detect bright edges on image. \n"
     "    --remapping [--type (remapping type)]                                                     Remapping image.\n"
     "                                                                                              Remapping type: [upside-down, x-direction, both-direction].\n"
+    "    --histogram-equal                                                                         Histogram equalization.\n"
     "    --save /path/to/image                                                                     Save image to file.\n"
     "\n");
 // clang-format on

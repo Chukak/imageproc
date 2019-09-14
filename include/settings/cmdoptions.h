@@ -13,6 +13,7 @@ static message_t THRESHOLD_OPTION("--threshold");
 static message_t LINEAR_FILTER_OPTION("--linear-filter");
 static message_t BRIGHT_EDGE_OPTION("--bright-edge");
 static message_t REMAPPING_OPTION("--remapping");
+static message_t HISTOGRAM_EQUALIZATION_OPTION("--histogram-equal");
 static message_t SAVE_OPTION("--save");
 
 namespace blur_opt
