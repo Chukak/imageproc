@@ -30,17 +30,10 @@ void Threshold::run()
 		source.copyTo(copy);
 	}
 
-	cv::threshold(
-	    copy, result, value, max_threshold_value, static_cast<THRESHOLD_TYPE>(type));
+	cv::threshold(copy,
+								result,
+								current_threshold_value,
+								max_threshold_value,
+								static_cast<THRESHOLD_TYPE>(type));
 	ok = !result.empty();
-}
-
-void Threshold::set_value(int v) noexcept
-{
-	value = v;
-}
-
-bool Threshold::check_value(int16_t v) noexcept
-{
-	return v > -1 && v <= max_threshold_value;
 }

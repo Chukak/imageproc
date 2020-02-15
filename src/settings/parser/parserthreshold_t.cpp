@@ -18,10 +18,9 @@ void ParserThreshold_t::parse() noexcept
 		if(argv[index] == opts::THRESHOLD_VALUE) {
 			if(argc - index > 1) {
 				value = atoi(argv[++index]);
-				if(Threshold::check_value(value)) {
+				if(Threshold::thr_check_value(value)) {
 					continue;
 				}
-				add_error(msg::threshold::THRESHOLD_VALUE_MSG);
 			}
 			add_error(msg::threshold::THRESHOLD_VALUE_MSG);
 		} else if(argv[index] == opts::THRESHOLD_TYPE) {
@@ -47,7 +46,7 @@ void ParserThreshold_t::parse() noexcept
 	if(!bad) {
 		auto threshold = new Threshold(type, std::move(frame), is_gray);
 		if(value > -1) {
-			threshold->set_value(value);
+			threshold->thr_set_value(value);
 		}
 		set_process(threshold);
 	}

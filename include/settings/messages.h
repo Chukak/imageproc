@@ -37,6 +37,7 @@ static message_t HELP_MSG(
     "    --remapping [--type (remapping type)]                                                     Remapping image.\n"
     "                                                                                              Remapping type: [upside-down, x-direction, both-direction].\n"
     "    --histogram-equal                                                                         Histogram equalization.\n"
+    "    --draw-contours [--threshold (0-255)] [--kernel-size (size)]                              Find and draw contours on the image.\n"
     "    --save /path/to/image                                                                     Save image to file.\n"
     "\n");
 // clang-format on
@@ -79,6 +80,14 @@ static message_t REMAPPING_TYPE_MSG(
     "both-direction].");
 static message_t SET_REMAPPING_TYPE_MSG("Please add a remapping type.");
 } // namespace remapping
+
+namespace draw_contours
+{
+static message_t
+    DRAW_CONTOURS_THRESHOLD_VALUE_MSG("Threshold value must be in range 0-255.");
+static message_t DRAW_CONTOURS_KERNEL_SIZE_MSG(
+    "Incorrect kernel size. Kernel size must be: [1x1, 3x3, ... 127x127].");
+} // namespace draw_contours
 } // namespace msg
 
 #endif // message_tS_H

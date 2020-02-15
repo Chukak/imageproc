@@ -15,6 +15,7 @@ static message_t BRIGHT_EDGE_OPTION("--bright-edge");
 static message_t REMAPPING_OPTION("--remapping");
 static message_t HISTOGRAM_EQUALIZATION_OPTION("--histogram-equal");
 static message_t SAVE_OPTION("--save");
+static message_t DRAW_CONTOURS_OPTION("--draw-contours");
 
 namespace blur_opt
 {
@@ -50,6 +51,12 @@ static messages_t REMAPPING_TYPE_VALUES = {"upside-down",
                                            "x-direction",
                                            "both-direction"};
 } // namespace remapping_opt
+
+namespace draw_contours_opt
+{
+static message_t DRAW_CONTOURS_THRESHOLD("--threshold");
+static message_t DRAW_CONTOURS_KERNEL_SIZE("--kernel-size");
+} // namespace draw_contours_opt
 
 } // namespace options
 } // namespace command_line
