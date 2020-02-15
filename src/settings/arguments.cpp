@@ -15,7 +15,7 @@ using namespace command_line;
 
 Arguments::Arguments(int argc, char** argv, Wrapper* w)
 {
-	valid = argc > 1;
+	valid = argc > 2;
 	if(valid) {
 		for(auto c = 1; c < argc; ++c) {
 			if(argv[c] == options::HELP_OPTION) {
