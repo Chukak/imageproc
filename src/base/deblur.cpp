@@ -27,7 +27,8 @@ void Deblur::run()
 		{
 			cv::Size size(roi.size());
 			cv::Mat ioMat(size, CV_32F, cv::Scalar(0));
-			cv::circle(ioMat, {size.width / 2, size.height / 2}, radius, CIRCLE_COLOR_DEFAULT);
+			cv::circle(
+					ioMat, {size.width / 2, size.height / 2}, radius, CIRCLE_COLOR_DEFAULT, -1);
 			cv::Mat psfHMat = ioMat / cv::sum(ioMat)[0];
 
 			cv::Mat outputDiv;
@@ -49,7 +50,7 @@ void Deblur::run()
 				cv::split(complex, planes);
 
 				cv::pow(cv::abs(planes[0]), 2, denom);
-				denom += 1.0 / static_cast<double>(snr_value);
+				denom += (1.0 / static_cast<double>(snr_value));
 				cv::divide(planes[0], denom, outputDiv);
 			}
 
