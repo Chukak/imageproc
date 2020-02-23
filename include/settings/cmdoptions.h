@@ -16,6 +16,7 @@ static message_t REMAPPING_OPTION("--remapping");
 static message_t HISTOGRAM_EQUALIZATION_OPTION("--histogram-equal");
 static message_t SAVE_OPTION("--save");
 static message_t DRAW_CONTOURS_OPTION("--draw-contours");
+static message_t DEBLUR_OPTION("--deblur");
 
 namespace blur_opt
 {
@@ -58,7 +59,15 @@ static message_t DRAW_CONTOURS_THRESHOLD("--threshold");
 static message_t DRAW_CONTOURS_KERNEL_SIZE("--kernel-size");
 } // namespace draw_contours_opt
 
+namespace deblur_opt
+{
+static message_t DEBLUR_RADIUS("--R");
+static message_t DEBLUR_SNR("--SNR");
+static message_t DEBLUR_TYPE("--type");
+static messages_t DEBLUR_TYPE_VALUES = {"out-of-focus", "motion"};
+} // namespace deblur_opt
 } // namespace options
+
 } // namespace command_line
 
 #endif // CMDOPTIONS_H

@@ -38,6 +38,9 @@ static message_t HELP_MSG(
     "                                                                                              Remapping type: [upside-down, x-direction, both-direction].\n"
     "    --histogram-equal                                                                         Histogram equalization.\n"
     "    --draw-contours [--threshold (0-255)] [--kernel-size (size)]                              Find and draw contours on the image.\n"
+    "    --deblur [--type (deblur type)] [--R X] [--SNR X]                                         Restore smoothing image. \n"
+    "                                                                                              Deblur types: [out-of-focus, motion].\n"
+    "                                                                                              R - radius value, SNR - snr value.\n"
     "    --save /path/to/image                                                                     Save image to file.\n"
     "\n");
 // clang-format on
@@ -88,6 +91,15 @@ static message_t
 static message_t DRAW_CONTOURS_KERNEL_SIZE_MSG(
     "Incorrect kernel size. Kernel size must be: [1x1, 3x3, ... 127x127].");
 } // namespace draw_contours
+
+namespace deblur
+{
+static message_t DEBLUR_RADIUS_MSG("Radius value must be an integer type.");
+static message_t DEBLUR_SNR_MSG("SNR must be an integer type.");
+static message_t SET_DEBLUR_TYPE_MSG("Please add a deblur type.");
+static message_t
+    DEBLUR_TYPE_MSG("Incorrect deblur type. Avaliable types: [out-of-focus, motion].");
+} // namespace deblur
 } // namespace msg
 
 #endif // message_tS_H

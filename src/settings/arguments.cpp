@@ -10,6 +10,7 @@
 #include "settings/parser/parserremapping_t.h"
 #include "settings/parser/parserhistogramequalization_t.h"
 #include "settings/parser/parserdrawcontours_t.h"
+#include "settings/parser/parserdeblur_t.h"
 
 using namespace command_line;
 
@@ -38,6 +39,8 @@ Arguments::Arguments(int argc, char** argv, Wrapper* w)
 					pw.run<ParserHistogramEqualization_t>();
 				} else if(argv[c] == options::DRAW_CONTOURS_OPTION) {
 					pw.run<ParserDrawContours_t>();
+				} else if(argv[c] == options::DEBLUR_OPTION) {
+					pw.run<ParserDeblur_t>();
 				} else {
 					pw.run<ParserShow_t>();
 				}
