@@ -2,20 +2,19 @@
 #include "settings/cmdoptions.h"
 #include <opencv2/imgproc.hpp>
 
-OperationType::options_t Threshold::options = {
-    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[0],
-    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[1],
-    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[2],
-    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[3],
-    command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[4]};
-
-OperationType::types_t Threshold::types = {THRESHOLD_BINARY,
-                                           THRESHOLD_BINARY_INVERTED,
-                                           THRESHOLD_TRUNCATED,
-                                           THRESHOLD_TO_ZERO,
-                                           THRESHOLD_TO_ZERO_INVERTED};
-
-OperationType::type_t Threshold::default_type = THRESHOLD_BINARY;
+DECL_OT_PARAMS(
+    Threshold,
+    CTOR_OPTIONS({command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[0],
+                  command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[1],
+                  command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[2],
+                  command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[3],
+                  command_line::options::threshold_opt::THRESHOLD_TYPE_VALUES[4]}),
+    CTOR_TYPES({THRESHOLD_BINARY,
+                THRESHOLD_BINARY_INVERTED,
+                THRESHOLD_TRUNCATED,
+                THRESHOLD_TO_ZERO,
+                THRESHOLD_TO_ZERO_INVERTED}),
+    CTOR_TYPE(THRESHOLD_BINARY));
 
 Threshold::Threshold(COMMON_CLASS_TYPE t, cv::Mat &&src, bool gray) :
     Operation(std::forward<cv::Mat>(src)), OperationType(t), is_gray(gray)

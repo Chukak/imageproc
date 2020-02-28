@@ -16,7 +16,7 @@ void ParserRemapping_t::parse() noexcept
 		if(argv[index] == opts::REMAPPING_TYPE) {
 			if(argc - index++ > 1) {
 				if(find_in(opts::REMAPPING_TYPE_VALUES)) {
-					type = Remapping::parse_type(argv[index]);
+					type = Remapping::parse_type(Remapping::OTParams, argv[index]);
 				} else {
 					add_error(msg::remapping::REMAPPING_TYPE_MSG);
 					break;

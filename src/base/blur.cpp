@@ -2,14 +2,12 @@
 #include "settings/cmdoptions.h"
 #include <opencv2/imgproc.hpp>
 
-OperationType::options_t Blur::options = {
-    command_line::options::blur_opt::BLUR_TYPE_VALUES[0],
-    command_line::options::blur_opt::BLUR_TYPE_VALUES[1],
-    command_line::options::blur_opt::BLUR_TYPE_VALUES[2]};
-
-OperationType::types_t Blur::types = {BLUR_GAUSSIAN, BLUR_MEDIAN, BLUR_BILATERAL};
-
-OperationType::type_t Blur::default_type = BLUR_ORIGINAL;
+DECL_OT_PARAMS(Blur,
+               CTOR_OPTIONS({command_line::options::blur_opt::BLUR_TYPE_VALUES[0],
+                             command_line::options::blur_opt::BLUR_TYPE_VALUES[1],
+                             command_line::options::blur_opt::BLUR_TYPE_VALUES[2]}),
+               CTOR_TYPES({BLUR_GAUSSIAN, BLUR_MEDIAN, BLUR_BILATERAL}),
+               CTOR_TYPE(BLUR_ORIGINAL));
 
 Blur::Blur(COMMON_CLASS_TYPE t, cv::Mat&& src) :
     Operation(std::forward<cv::Mat>(src)), KernelSize(27), OperationType(t)

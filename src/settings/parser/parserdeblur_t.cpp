@@ -28,7 +28,7 @@ void ParserDeblur_t::parse() noexcept
 		} else if(argv[index] == opts::DEBLUR_TYPE) {
 			if(argc - index++ > 1) {
 				if(find_in(opts::DEBLUR_TYPE_VALUES)) {
-					type = Deblur::parse_type(argv[index]);
+					type = Deblur::parse_type(Deblur::OTParams, argv[index]);
 				} else {
 					add_error(msg::deblur::DEBLUR_TYPE_MSG);
 					break;

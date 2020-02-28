@@ -21,8 +21,7 @@ public:
 public:
 	void run() final;
 
-private:
-	OT_VARIABLES
+	DECL_OT_PARAMS_VAR
 };
 
 #endif // REMAPPING_H

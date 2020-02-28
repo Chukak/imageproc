@@ -64,7 +64,7 @@ namespace deblur_opt
 static message_t DEBLUR_RADIUS("--R");
 static message_t DEBLUR_SNR("--SNR");
 static message_t DEBLUR_TYPE("--type");
-static messages_t DEBLUR_TYPE_VALUES = {"out-of-focus", "motion"};
+static messages_t DEBLUR_TYPE_VALUES = {"out-of-focus"};
 } // namespace deblur_opt
 } // namespace options
 

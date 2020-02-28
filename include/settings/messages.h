@@ -39,8 +39,8 @@ static message_t HELP_MSG(
     "    --histogram-equal                                                                         Histogram equalization.\n"
     "    --draw-contours [--threshold (0-255)] [--kernel-size (size)]                              Find and draw contours on the image.\n"
     "    --deblur [--type (deblur type)] [--R X] [--SNR X]                                         Restore smoothing image. \n"
-    "                                                                                              Deblur types: [out-of-focus, motion].\n"
-    "                                                                                              R - radius value, SNR - snr value.\n"
+    "                                                                                              Deblur types: [out-of-focus].\n"
+    "                                                                                              R - radius value, SNR - signal to noise ratio value.\n"
     "    --save /path/to/image                                                                     Save image to file.\n"
     "\n");
 // clang-format on
@@ -98,7 +98,7 @@ static message_t DEBLUR_RADIUS_MSG("Radius value must be an integer type.");
 static message_t DEBLUR_SNR_MSG("SNR must be an integer type.");
 static message_t SET_DEBLUR_TYPE_MSG("Please add a deblur type.");
 static message_t
-    DEBLUR_TYPE_MSG("Incorrect deblur type. Avaliable types: [out-of-focus, motion].");
+    DEBLUR_TYPE_MSG("Incorrect deblur type. Avaliable types: [out-of-focus].");
 } // namespace deblur
 } // namespace msg
 

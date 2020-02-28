@@ -24,7 +24,7 @@ void ParserBlur_t::parse() noexcept
 		} else if(argv[index] == opts::BLUR_TYPE) {
 			if(argc - index++ > 1) {
 				if(find_in(opts::BLUR_TYPE_VALUES)) {
-					type = Blur::parse_type(argv[index]);
+					type = Blur::parse_type(Blur::OTParams, argv[index]);
 				} else {
 					add_error(msg::blur::BLUR_TYPE_MSG);
 					break;

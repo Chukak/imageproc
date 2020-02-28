@@ -10,12 +10,12 @@ Parser::Parser(int _argc, char** _argv, Wrapper* w) : argc(_argc), argv(_argv)
 
 void Parser::set_image(cv::Mat& frame) noexcept
 {
-	bad = !argc - index > 0;
-	if(!bad) {
+	bool ok = !argc - index > 0;
+	if(!ok) {
 		frame = cv::imread(argv[index]);
-		bad = frame.empty();
+		ok = frame.empty();
 	}
-	if(bad) {
+	if(ok) {
 		add_error(msg::IMG_NOT_FOUND_MSG);
 	}
 }

@@ -7,8 +7,7 @@
 
 enum DEBLUR_TYPE : OperationType::type_t
 {
-	DEBLUR_OUT_OF_FOCUS,
-	DEBLUR_MOTION
+  DEBLUR_OUT_OF_FOCUS
 };
 
 class Deblur
@@ -17,13 +16,12 @@ class Deblur
     , public SNRInterface
 {
 public:
-  explicit Deblur(COMMON_CLASS_TYPE t, cv::Mat&& src);
+	explicit Deblur(COMMON_CLASS_TYPE t, cv::Mat&& src);
 
 public:
-  void run() final;
+	void run() final;
 
-private:
-  OT_VARIABLES
+	DECL_OT_PARAMS_VAR
 };
 
 #endif // DEBLUR_H

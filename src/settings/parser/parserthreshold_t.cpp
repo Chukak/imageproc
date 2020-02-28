@@ -26,7 +26,7 @@ void ParserThreshold_t::parse() noexcept
 		} else if(argv[index] == opts::THRESHOLD_TYPE) {
 			if(argc - index++ > 1) {
 				if(find_in(opts::THRESHOLD_TYPE_VALUES)) {
-					type = Threshold::parse_type(argv[index]);
+					type = Threshold::parse_type(Threshold::OTParams, argv[index]);
 				} else {
 					add_error(msg::threshold::THRESHOLD_TYPE_MSG);
 					break;

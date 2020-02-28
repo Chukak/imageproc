@@ -25,9 +25,10 @@ public:
 public:
 	void run() final;
 
+	DECL_OT_PARAMS_VAR
+
 private:
 	bool is_gray{false};
-	OT_VARIABLES
 };
 
 #endif // THRESHOLD_H

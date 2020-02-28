@@ -6,6 +6,6 @@
 namespace functions
 {
 void fft_shift(const cv::Mat& input, cv::Mat& output);
-};
+}; // namespace functions
 
 #endif // FUNCTIONS_DEFAULT_H

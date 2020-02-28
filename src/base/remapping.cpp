@@ -2,16 +2,13 @@
 #include "settings/cmdoptions.h"
 #include <opencv2/imgproc.hpp>
 
-OperationType::options_t Remapping::options = {
-    command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[0],
-    command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[1],
-    command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[2]};
-
-OperationType::types_t Remapping::types = {REMAPPING_UPSIDE_DOWN,
-                                           REMAPPING_X_DIRECTION,
-                                           REMAPPING_BOTH_DIRECTION};
-
-OperationType::type_t Remapping::default_type = REMAPPING_UPSIDE_DOWN;
+DECL_OT_PARAMS(
+    Remapping,
+    CTOR_OPTIONS({command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[0],
+                  command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[1],
+                  command_line::options::remapping_opt::REMAPPING_TYPE_VALUES[2]}),
+    CTOR_TYPES({REMAPPING_UPSIDE_DOWN, REMAPPING_X_DIRECTION, REMAPPING_BOTH_DIRECTION}),
+    CTOR_TYPE(REMAPPING_UPSIDE_DOWN));
 
 Remapping::Remapping(COMMON_CLASS_TYPE t, cv::Mat&& src) :
     Operation(std::forward<cv::Mat>(src)), OperationType(t)
